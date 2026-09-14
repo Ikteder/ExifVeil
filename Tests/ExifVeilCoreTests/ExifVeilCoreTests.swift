@@ -2,7 +2,11 @@ import CoreGraphics
 import ImageIO
 import XCTest
 import UniformTypeIdentifiers
+#if canImport(ExifVeilCore)
 @testable import ExifVeilCore
+#else
+@testable import ExifVeil
+#endif
 
 final class ExifVeilCoreTests: XCTestCase {
     func testFixtureExposesEverySupportedCategory() throws {
@@ -128,4 +132,3 @@ private enum FixtureFactory {
         case encodingFailed
     }
 }
-
