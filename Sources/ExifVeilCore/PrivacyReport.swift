@@ -78,11 +78,16 @@ public struct PrivacyReport: Equatable, Codable, Sendable {
 
     public var riskScore: Int {
         min(100, findings.reduce(0) { partial, finding in
-            partial + switch finding.severity {
-            case .high: 30
-            case .medium: 15
-            case .low: 5
+            let weight: Int
+            switch finding.severity {
+            case .high:
+                weight = 30
+            case .medium:
+                weight = 15
+            case .low:
+                weight = 5
             }
+            return partial + weight
         })
     }
 
@@ -97,4 +102,3 @@ public struct PrivacyReport: Equatable, Codable, Sendable {
         findings.lazy.filter { $0.category == category }.count
     }
 }
-
