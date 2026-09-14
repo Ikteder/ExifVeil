@@ -21,7 +21,7 @@ public struct MetadataInspector: Sendable {
             throw MetadataInspectionError.invalidImageData
         }
         guard CGImageSourceGetCount(source) > 0 else {
-            throw MetadataInspectionError.missingImageFrame
+            throw MetadataInspectionError.invalidImageData
         }
 
         let raw = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [String: Any] ?? [:]
@@ -149,4 +149,3 @@ public struct MetadataInspector: Sendable {
         return String(text.prefix(77)) + "..."
     }
 }
-

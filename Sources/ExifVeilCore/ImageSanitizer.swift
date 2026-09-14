@@ -45,7 +45,11 @@ public struct ImageSanitizer: Sendable {
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
             throw ImageSanitizationError.invalidImageData
         }
-        guard CGImageSourceGetCount(source) == 1 else {
+        let frameCount = CGImageSourceGetCount(source)
+        guard frameCount > 0 else {
+            throw ImageSanitizationError.invalidImageData
+        }
+        guard frameCount == 1 else {
             throw ImageSanitizationError.animatedImageUnsupported
         }
         guard let decoded = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
@@ -97,4 +101,3 @@ public struct ImageSanitizer: Sendable {
         )
     }
 }
-
