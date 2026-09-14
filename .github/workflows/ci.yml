@@ -11,8 +11,8 @@ jobs:
   static:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: "22"
       - run: node tests/static-check.mjs
@@ -20,7 +20,7 @@ jobs:
   swift-and-ios:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Test Swift package core
         run: swift test
       - name: Install XcodeGen
@@ -42,4 +42,3 @@ jobs:
           -destination 'platform=iOS Simulator,id=${{ steps.simulator.outputs.device_id }}'
           test
           CODE_SIGNING_ALLOWED=NO
-
