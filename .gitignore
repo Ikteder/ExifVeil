@@ -1,0 +1,7 @@
+.DS_Store
+.build/
+DerivedData/
+ExifVeil.xcodeproj/
+*.xcuserstate
+xcuserdata/
+
