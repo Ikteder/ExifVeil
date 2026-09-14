@@ -48,9 +48,10 @@ struct ContentView: View {
     }
 
     private var pickerCard: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        let pickerTitle = sourceData == nil ? "Choose photo" : "Choose another photo"
+        return VStack(alignment: .leading, spacing: 12) {
             PhotosPicker(selection: $selection, matching: .images) {
-                Label(sourceData == nil ? "Choose photo" : "Choose another photo", systemImage: "photo.on.rectangle")
+                Label(pickerTitle, systemImage: "photo.on.rectangle")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
@@ -251,4 +252,3 @@ private extension View {
             .clipShape(RoundedRectangle(cornerRadius: 22))
     }
 }
-
